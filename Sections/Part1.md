@@ -25,7 +25,7 @@ GIS digitally models the real world using:
 - Data tables
 
 <p align="left">
-  <img src="">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/1.jpg">
 </p>
 
 ### Two types of spatial data
@@ -35,11 +35,27 @@ GIS digitally models the real world using:
 Vector data usually is used to represent spatial objects, such as **points**, **lines** and **polygons**. 
 Such data consists of a description of the “geometry” or “shape” of the objects, and normally also includes additional variables. 
 
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/2.png" width="500"/>
+</p>
+
 In all cases, the geometry of these data structures consists of sets of coordinate pairs (x, y).
+
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/3.png" width="500"/>
+</p>
 
 And these additional variables are often referred to as “attributes”.
 
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/4.png" width="500"/>
+</p>
+
 Example: represent the same spatial object in different ways
+
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/5.png">
+</p>
 
 
 2. **Raster data**
@@ -54,7 +70,15 @@ It is implicitly set by knowing the spatial extent and the number or rows and co
 
 Example: different applications of raster data
 
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/6.png" width="800"/>
+</p>
+
 
 **\*Vector vs. Raster**
 
+These two types of spatial data have their own advantages and disadvantages in representing spatial information.
 
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/7.png" width="700"/>
+</p>
