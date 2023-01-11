@@ -2,6 +2,12 @@
 
 ## Geospatial R - Rasters
 
+[Crop, masking, and trimming](#crop-masking-and-trimming)
+
+[Extracting data from rasters](#extracting-data-from-rasters)
+
+[Assignment 2](#assignment-2)
+
 Now we have some watershed outlines and maybe we want to figure out how much mining there was each year in these watersheds. 
 In the raster folder we have annual mining extent for the mud river as rasters (as .tifs). 
 So let's play with the raster library and see what this data looks like. 
@@ -120,8 +126,8 @@ for(i in 1:length(rast.files)){
   stan.mining.yr = crop(mining.yr, stanley.match) %>% mask(.,stanley.match)
 # Let's set NAs to 0
   stan.mining.yr[is.na(stan.mining.yr)] = 0
-# Sum cells
-  tote.yr = sum(as.matrix(stan.mining.yr))/(1000*1000) #km2
+# Sum cells and convert to km2
+  tote.yr = sum(as.matrix(stan.mining.yr))/(1000*1000) 
 # Get percent.
   tote.p = tote.yr/stan.area
 # Put data into data frame (i = the row where data will go)
