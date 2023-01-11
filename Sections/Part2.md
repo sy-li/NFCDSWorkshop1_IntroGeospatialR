@@ -24,3 +24,19 @@ R is a versatile statistical programming language, but it can also be used for g
 - R allows to compute statistical data and create graphs and maps in the same programmable language.
 - Traditional GIS software implement a WYSIWIG approach (“What You See Is What You Get”)
 - R implements a WYSIWYM approach (“What You See Is What You Mean”)
+
+### Environment setting
+
+Before working on real dataset, let's first install essential R packages. Please copy and paste the code block below into your RStudio console and run it.
+
+```{r install packages}
+packages.to.install = c('dplyr',
+                        'tidyr',
+                        'magrittr',
+                        'ggplot2',
+                        'stringr',
+                        'plotly',
+                        'terra')
+
+install.packages(packages.to.install,repos = 'https://cloud.r-project.org')
+```
