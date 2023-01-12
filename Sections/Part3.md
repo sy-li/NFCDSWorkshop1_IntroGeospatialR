@@ -67,9 +67,12 @@ total.areas
 ```
 Now let's fix the original data frame using package called `tidyr` `dplyr` and `magrittr`
 ```diff
-library(dplyr) # A great library of data filtering tools
-library(tidyr) # Easiest way to make data tidy
-library(magrittr) # Adds pipe functionality
+# A great library of data filtering tools
+library(dplyr) 
+# Easiest way to make data tidy
+library(tidyr) 
+# Adds pipe functionality
+library(magrittr) 
 ```
 Reread in data and skip first row this time. And keep only first five columns
 ```
