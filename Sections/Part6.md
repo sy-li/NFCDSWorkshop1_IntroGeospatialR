@@ -1,4 +1,4 @@
-[<<< Previous](Part5.md)
+[<<< Previous](Part5.md) | [Homepage](../README.md)
 
 ## Part 6: Resources
 
