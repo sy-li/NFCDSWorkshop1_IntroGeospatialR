@@ -30,9 +30,10 @@ plot(stan.mine, main='Cropped to extent only')
 plot(stanley.match,add=T)
 ```
 But that only cropped the data to the extent of stanley fork watershed. 
-```
+```diff
 mask(stan.mine,stanley.match) %>% 
-  plot(., main='Cropped to watershed outline') # The dot just retrieves the previous object fed from the pipe!
+  plot(., main='Cropped to watershed outline') 
+# The dot just retrieves the previous object fed from the pipe!
 plot(stanley.match,add=T)
 ```
 We can trim this raster even more though with the trim command
