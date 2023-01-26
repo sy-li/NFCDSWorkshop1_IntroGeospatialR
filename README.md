@@ -35,7 +35,7 @@ After completing this workshop, you will anticipate:
 1. [Brief Overview of GIS (Geographic Information Systems)](Sections/Part1.md)
 2. [Bridging R with GIS](Sections/Part2.md)
 3. [Tricks beyond Basic R](Sections/Part3.md)
-4. [Geospatial R - Shapefiles](Sections/Part4.md)
+4. [Geospatial R - Vectors](Sections/Part4.md)
 5. [Geospatial R - Rasters](Sections/Part5.md)
 6. [Resources](Sections/Part6.md)
 
