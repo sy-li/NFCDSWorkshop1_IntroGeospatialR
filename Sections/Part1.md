@@ -1,5 +1,6 @@
 [<<< Previous](../README.md) | [Next >>>](Part2.md)  
 
+
 ## Brief Overview of GIS (Geographic Information Systems)
 
 [What is GIS](#what-is-gis)
@@ -82,3 +83,5 @@ These two types of spatial data have their own advantages and disadvantages in r
 <p align="left">
   <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/7.png" width="700"/>
 </p>
+
+[<<< Previous](../README.md) | [Next >>>](Part2.md)  
