@@ -7,6 +7,8 @@
 
 [Basic components of GIS](#basic-components-of-gis)
 
+[Coordinate reference systems](#coordinate-reference-systems)
+
 [Two types of spatial data](#two-types-of-spatial-data)
 
 
@@ -27,6 +29,22 @@ GIS digitally models the real world using:
 
 <p align="left">
   <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/1.jpg">
+</p>
+
+### Coordinate reference systems
+
+Coordinate Reference System (CRS) defines how the spatial elements of the data relate to the surface of the Earth.
+
+CRSs are either geographic or projected.
+- Geographic coordinate systems identify any location on the Earth’s surface using longitude and latitude;
+- Projected CRSs are based on a geographic CRS, and rely on map projections to convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values.
+
+<p align="left">
+  <img src="https://github.com/sy-li/NFCDSWorkshop1_IntroGeospatialR/blob/main/Sections/images/crs.png">
+</p>
+<p>
+  <em>Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for a vector data type. (Source: geocompr.robinlovelace.net)
+</em>
 </p>
 
 ### Two types of spatial data
