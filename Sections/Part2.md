@@ -38,3 +38,5 @@ packages.to.install = c(
 
 install.packages(packages.to.install,repos = 'https://cloud.r-project.org')
 ```
+
+[<<< Previous](Part1.md) | [Next >>>](Part3.md)  
