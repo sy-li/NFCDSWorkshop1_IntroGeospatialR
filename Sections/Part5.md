@@ -1,148 +1,90 @@
 [<<< Previous](Part4.md) | [Next >>>](Part6.md)  
 
-## Geospatial R - Rasters
+## Raster-Vector Interactions
 
-[Crop, masking, and trimming](#crop-masking-and-trimming)
+[Raster cropping](#raster-cropping)
 
-[Extracting data from rasters](#extracting-data-from-rasters)
+[Raster extraction](#raster-extraction)
 
-[Assignment 2](#assignment-2)
+[Rasterization](#rasterization)
 
-Now we have some watershed outlines and maybe we want to figure out how much mining there was each year in these watersheds. 
-In the raster folder we have annual mining extent for the mud river as rasters (as .tifs). 
-So let's play with the raster library and see what this data looks like. 
+[Spatial vectorization](#spatial-vectorization)
 
-First, see what mining looks like from 1999
+
+Raster-vector interaction includes four main techniques: raster cropping and masking using vector objects; extracting raster values using different types of vector data; and raster-vector conversion. 
+
+### Raster cropping
+
+`crop(x,y)` reduces the rectangular extent of x based on the extent of y.
+```
+br_lulc_crop = crop(sa_lu, sa_brazil)
+
+plot(br_lulc_crop)
+```
+
+`mask(x,y)` replaces the cells of x outside of the bounds of y with NA.
+
+```
+br_lulc_mask = mask(sa_lu, sa_brazil)
+
+plot(br_lulc_mask)
+```
+
+In reality, we want to use both `crop()` and `mask()` together in most cases. 
+```
+br_lulc_final = mask(br_lulc_crop,sa_brazil)
+
+plot(br_lulc_final)
+```
+
+### Raster extraction
+
+Raster extractions identify and returning the values associated with a ‘target’ raster at specific locations, based on a (typically vector) geographic ‘selector’. 
+
 ```diff
-mine.99 = rast('data/rasters/mining_1999_1014.tif')
+# points as selector
+site_lulc = terra::extract(sa_lu, site_sp)
+cbind(site_sp,site_lulc)
 
-# Plot the data
-plot(mine.99)
-plot(mud.river,add=T)
+# polygon as selector
+br_lulc = terra::extract(sa_lu,sa_brazil)
+br_lulc %>% 
+  group_by(ID, lulc) %>%
+  count()
 ```
 
-### Crop, masking, and trimming
+### Rasterization
 
-Let's look just at stanley fork. 
-```
-stan.mine = crop(mine.99,stanley.match)
-plot(stan.mine, main='Cropped to extent only')
-plot(stanley.match,add=T)
-```
-But that only cropped the data to the extent of stanley fork watershed. 
+We use `rasterize(x,y)` for rasterization. x is vector object to be rasterized, and y is a ‘template raster’ object defining the extent, resolution and CRS of the output. 
+
 ```diff
-mask(stan.mine,stanley.match) %>% 
-  plot(., main='Cropped to watershed outline') 
-# The dot just retrieves the previous object fed from the pipe!
-plot(stanley.match,add=T)
-```
-We can trim this raster even more though with the trim command
-```
-mask(stan.mine,stanley.match) %>% 
-  trim(.) %>%
-  plot(., main='Cropped and trimmed to watershed outline')
-plot(stanley.match,add=T)
+raster_template = rast(ext(amz_sp),res= 0.5,crs = st_crs(amz_sp)$wkt)
+
+# rasterize MAR in Amazon
+amz_mar = rasterize(amz_sp,raster_template,field=amz_sp$MAR)
+plot(amz_mar)
+
+# rasterize MAT in Amazon
+amz_mat = rasterize(amz_sp,raster_template,field=amz_sp$MAT)
+plot(amz_mat)
 ```
 
-### Summarising raster data
+### Spatial vectorization
+Vectorization converts spatially continuous raster data into spatially discrete vector data such as points, lines or polygons.
 
-What is the area of this watershed?
 ```diff
-stan.area = expanse(stanley.match) 
-# this is in m2, km2 makes more sense
-stan.area = expanse(stanley.match)/(1000*1000)
-```
-Mask stan.mine again
-```
-stan.shed = mask(stan.mine,stanley.match)
-```
-How many cells are in stan.shed? 
-```
-ncell(stan.shed)
-```
-But this includes a bunch of NAs so we can't use it to calculate area. 
+# to points
+mar_point = as.points(amz_mar) %>%
+  st_as_sf()
+  
+plot(mar_point)
 
-Let's set NAs to 0
-```
-stan.shed[is.na(stan.shed)] = 0
-```
-This works because each cell is actually the area. 900m2 so we can just sum up the non-zero cells. 
-```
-tote99 = sum(as.matrix(stan.shed))/(1000*1000)
-
-tote99/stan.area
+# to contour lines
+mar_contour = as.contour(amz_mar) %>%
+  st_as_sf()
+  
+plot(amz_mar)
+plot(mar_contour,add=T)
 ```
 
-### Extracting data from rasters 
-
-We have seen that 83% of the watershed was undergoing mining in 1999. 
-What about % active mining for every year of the watershed? 
-Here we can use a loop to answer this question. 
-
-```
-library(stringr)
-```
-To make sure I get the years right, the best practice is to make a vector that lists the year from the .tif raster name. 
-```
-rast.name = list.files('data/rasters')
-years = str_split_fixed(rast.name,'_',3) # Splits string into 3 column data frame
-head(years)
-```
-All we want is the second column
-```
-years = as.numeric(years[,2])
-```
-Now let's setup a director to grab all rasters
-```
-rast.files = paste('data/rasters',rast.name,sep='/')
-```
-Setup an empty data frame to hold the results of our loop
-```
-stan.ann.mine = data.frame(year=numeric(),mining=numeric(),pmining=numeric())
-```
-Practice loop, good idea when building a loop that may take some time to run
-```diff
-i = 1
-# Read in our raster data 
-mining.yr = rast(rast.files[i])
-# Trim it to stanely fork by first cropping it and then masking it
-stan.mining.yr = crop(mining.yr, stanley.match) %>% mask(.,stanley.match)
-# Set NAs to 0
-stan.mining.yr[is.na(stan.mining.yr)] = 0
-# Sum cells
-tote.yr = sum(as.matrix(stan.mining.yr))/(1000*1000) #km2
-# Get percent.
-tote.p = tote.yr/stan.area
-# Put data into data frame (i = the row where data will go)
-stan.ann.mine[i,] = c(years[i],tote.yr,tote.p)
-stan.ann.mine 
-# looks good
-```
-Now all we have to do is put this into a loop
-```diff
-for(i in 1:length(rast.files)){
-# Read in our raster data 
-  mining.yr = rast(rast.files[i])
-# Trim it to stanely fork by first cropping it and then masking it
-  stan.mining.yr = crop(mining.yr, stanley.match) %>% mask(.,stanley.match)
-# Let's set NAs to 0
-  stan.mining.yr[is.na(stan.mining.yr)] = 0
-# Sum cells and convert to km2
-  tote.yr = sum(as.matrix(stan.mining.yr))/(1000*1000) 
-# Get percent.
-  tote.p = tote.yr/stan.area
-# Put data into data frame (i = the row where data will go)
-  stan.ann.mine[i,] = as.numeric(c(years[i],tote.yr,tote.p))
-}
-```
-
-Plot our data.
-```
-ggplot(stan.ann.mine,aes(x=year,y=mining)) + geom_point() +
-  ylab(expression(paste('Active Mining (',km^2,')',sep='')))
-```
-
-
-### Assignment 2
-
-Make the same plot with mining as percent mining!
+[<<< Previous](Part4.md) | [Next >>>](Part6.md)  
