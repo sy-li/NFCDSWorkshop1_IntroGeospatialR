@@ -29,7 +29,7 @@ R is a versatile statistical programming language, but it can also be used for g
 
 Before working on real dataset, let's first install essential R packages. Please copy and paste the code block below into your RStudio console and run it.
 
-```{r install packages}
+```diff
 packages.to.install = c(
 'sf'          # handle spatial vector data
 'terra'       # handle spatial raster data
