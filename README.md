@@ -9,6 +9,8 @@ This workshop will go over some of the basics of spatial data with R. Course con
 
 Time: 1 hour 15 minutes
 
+This resource is licensed under a [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
 ## Workshop Learning Objectives
 
 After completing this workshop, you will anticipate:
@@ -34,9 +36,10 @@ After completing this workshop, you will anticipate:
 
 1. [Brief Overview of GIS (Geographic Information Systems)](Sections/Part1.md)
 2. [Bridging R with GIS](Sections/Part2.md)
-3. [Tricks beyond Basic R](Sections/Part3.md)
-4. [Geospatial R - Vectors](Sections/Part4.md)
-5. [Geospatial R - Rasters](Sections/Part5.md)
-6. [Resources](Sections/Part6.md)
+3. [Data Model I - Vector](Sections/Part3.md)
+4. [Data Model II - Raster](Sections/Part4.md)
+5. [Raster-Vector Interactions](Sections/Part5.md)
+6. [Exercise](Sections/Part6.md)
+7. [Resources](Sections/Part7.md)
 
 [Get Started >>>](Sections/Part1.md)  
