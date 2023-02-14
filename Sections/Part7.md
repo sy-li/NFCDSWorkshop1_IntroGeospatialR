@@ -19,13 +19,13 @@ To further explore or troubleshoot issues in using R for geospatial analysis, co
 ### Exercise Answer Key
 
 ```diff
-# read in as shapefile
-amz_agb_shp = amz_agb %>%
+# convert dataframe to simple feature
+amz_agb_sp = amz_agb %>%
   st_as_sf(coords = c('lon','lat'),crs = st_crs(4326)) 
 
 # rasterization
-raster_template = rast(ext(amz_agb_shp),res= 0.5,crs = st_crs(amz_agb_shp)$wkt)
-amz_agb_rast = rasterize(amz_agb_shp,raster_template,field=amz_agb_shp$agb)
+raster_template = rast(ext(amz_agb_sp),res= 0.5,crs = st_crs(amz_agb_sp)$wkt)
+amz_agb_rast = rasterize(amz_agb_sp,raster_template,field=amz_agb_sp$agb)
 
 # plot
 plot(amz_agb_rast)
