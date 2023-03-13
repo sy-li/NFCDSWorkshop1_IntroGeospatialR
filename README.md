@@ -7,7 +7,7 @@ Welcome to the curriculum page for the Introduction to Geospatial R workshop.
 
 This workshop will go over some of the basics of spatial data with R. Course contents will include brief introduction to GIS, key libraries for geospatial analysis (`sf` and `terra`), and common examples of vector and raster data operations.
 
-Time: 1 hour 15 minutes
+Time: 1 hour 30 minutes
 
 This resource is licensed under a [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
