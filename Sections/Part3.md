@@ -5,7 +5,9 @@
 [Read vector data](#read-vector-data)
 
 [Vector operations](#vector-operations)
-
+- [Spatial join](#spatial-join)
+- [Spatial subsetting](#spatial-subsetting)
+- [Spatial aggregation](#spatial-aggregation)
 
 ### Read vector data
 
@@ -78,7 +80,7 @@ plot(amz_sp)
 
 ### Vector operations
 
-- Spatial join
+#### Spatial join
 
 Joining two non-spatial datasets relies on a shared index. Spatial data joining applies the same concept, but instead relies on spatial relations. We use `st_join(x,y)` to add new columns to the target object (x) from a source object (y).
 
@@ -89,7 +91,7 @@ site_joined = st_join(site_sp, sa_regions)
 site_joined
 ```
 
-- Spatial subsetting
+#### Spatial subsetting
 
 Spatial subsetting returns a new object containing only features that meet certain criteria. It can be implemented in several ways:
 
@@ -111,7 +113,7 @@ ggplot()+
   coord_sf(xlim = c(-80, -45), ylim = c(-20, 10), expand = T)
 ```
 
-- Spatial aggregation
+#### Spatial aggregation
 
 Spatial data aggregation condenses data. It "summarise" multiple values of a variable based on specified function and return a single value per grouping variable. 
 
