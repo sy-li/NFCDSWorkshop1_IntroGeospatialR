@@ -31,12 +31,19 @@ Before working on real dataset, let's first install essential R packages. Please
 
 ```diff
 packages.to.install = c(
-'sf'          # handle spatial vector data
-'terra'       # handle spatial raster data
-'tidyverse'   # a standardized way to manage dataset
+# handle spatial vector data
+'sf'        
+# handle spatial raster data
+'terra'    
+# a standardized way to manage dataset
+'tidyverse'   
 )
 
 install.packages(packages.to.install,repos = 'https://cloud.r-project.org')
 ```
+
+### Download data
+
+Please download the [data](https://drive.google.com/file/d/1D_zVgmR0dMP9Uc33B4BRlHdJA--OmcL1/view?usp=share_link) and unzip it into the same folder with your R script.
 
 [<<< Previous](Part1.md) | [Next >>>](Part3.md)  
