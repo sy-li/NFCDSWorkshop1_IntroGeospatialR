@@ -36,11 +36,17 @@ Spatial data in `sf` can be subset just like a dataframe. For example, we want t
 sa_brazil = sa_regions[sa_regions$COUNTRY == "Brazil",]
 
 # combines them into a single feature
-brazil = st_union(sa_brazil)
+sa_amazon = sa_regions[sa_regions$COUNTRY == "Brazil"|sa_regions$COUNTRY == "Bolivia"|
+                      sa_regions$COUNTRY == "Colombia"|sa_regions$COUNTRY == "Ecuador"|
+                      sa_regions$COUNTRY == "Guyana"|sa_regions$COUNTRY == "Peru"|
+                      sa_regions$COUNTRY == "Suriname"|sa_regions$COUNTRY == "Venezuela"|
+                      sa_regions$COUNTRY == "French Guiana (France)",]
+amazon = st_union(sa_amazon)
 
-# now plot Brazil over a map of South America
+# now plot Brazil over a map of South America, and see difference before and after union
 plot(sa_regions,reset = FALSE)  
-plot(brazil, add = TRUE, col = "red")
+plot(amazon, add = TRUE, col = "red")
+plot(sa_amazon, add = TRUE, col = "red")
 ```
 
 Vector data can also be imported from tables. `st_as_sf()` function can transform lat/lon into geometry. (Learn more about the language of geomotry: [WKT](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry))
