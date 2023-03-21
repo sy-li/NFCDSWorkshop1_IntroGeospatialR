@@ -26,7 +26,7 @@ After completing this workshop, you will anticipate:
 
 ## Primary Tools
 - [R software environment](https://cran.rstudio.com/)
-- [RStudio desktop software](https://libcal.library.nd.edu/event/9797081)
+- [RStudio desktop software](https://posit.co/download/rstudio-desktop/)
 
 ## Post-Workshop Survey
 [Post-Workshop Survey Form](https://forms.gle/xcMjZ9baJvdcZs379)
